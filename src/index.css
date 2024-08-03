@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gray-light: #f4f4f4;
+  --gray-dark: #8d8d8d;
+  --purple-light: #e9d0fa;
+  --purple-medium: #c279f7;
+  --purple-dark: #aa43f2;
+}
+
+button {
+  cursor: pointer;
+}

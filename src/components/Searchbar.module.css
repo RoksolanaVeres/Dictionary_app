@@ -1,0 +1,26 @@
+.searchForm {
+  margin: 20px 0;
+  position: relative;
+}
+
+.searchbar {
+  width: 100%;
+  background-color: var(--gray-light);
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.searchbar:focus {
+  outline: 2px solid var(--purple-medium);
+}
+
+.magnifyingGlass_icon {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  right: 20px;
+  color: var(--purple-dark)
+}
