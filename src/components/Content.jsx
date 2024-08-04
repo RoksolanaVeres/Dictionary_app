@@ -1,16 +1,46 @@
 import useSearchWordFetchedData from "../hooks/useSearchWordFetchedData";
 import classes from "./Content.module.css";
-import { FaPlay } from "react-icons/fa6";
+import { FaPlay, FaPause } from "react-icons/fa6";
+import useSound from "use-sound";
+import { useState } from "react";
 
 export default function Content({ searchedWord, setInputText, setSearchedWord }) {
   const { searchWordData, isLoading, isError, error } = useSearchWordFetchedData(searchedWord);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  console.log(searchWordData);
+
+  let audioUrl = "";
+
+  if (searchWordData) {
+    if (searchWordData[0].phonetics.length === 0) {
+      audioUrl = "";
+    } else {
+      const phoneticsIndex = searchWordData[0].phonetics.length - 1;
+      audioUrl = searchWordData[0].phonetics[phoneticsIndex].audio;
+    }
+  }
+
+  const [play, { stop }] = useSound(audioUrl, {
+    onend: () => {
+      setIsPlaying(false);
+    },
+  });
 
   function handleWordClick(clickedWord) {
     setInputText(clickedWord);
     setSearchedWord(clickedWord);
   }
 
-  console.log(searchWordData);
+  function handleAudioClick() {
+    if (isPlaying) {
+      stop();
+      setIsPlaying(false);
+    } else {
+      play();
+      setIsPlaying(true);
+    }
+  }
 
   if (searchedWord === "") {
     return (
@@ -34,10 +64,15 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
             <h1 className={classes.content__header_word}>{searchWordData[0].word}</h1>
             <p className={classes.content__header_transcription}>{searchWordData[0].phonetic}</p>
           </div>
-
-          <button className={classes.content__header_play_btn}>
-            <FaPlay className={classes.content__play_icon} />
-          </button>
+          {audioUrl !== "" && (
+            <button className={classes.content__header_play_btn} onClick={handleAudioClick}>
+              {isPlaying ? (
+                <FaPause className={classes.content__play_icon} />
+              ) : (
+                <FaPlay className={classes.content__play_icon} />
+              )}
+            </button>
+          )}
         </div>
         {searchWordData[0].meanings.map((meaning, index) => (
           <div key={index} className={classes.content__article_container}>
