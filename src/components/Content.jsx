@@ -2,8 +2,10 @@ import useSearchWordFetchedData from "../hooks/useSearchWordFetchedData";
 import classes from "./Content.module.css";
 import { FaPlay } from "react-icons/fa6";
 
-export default function Content({ searchedWord }) {
+export default function Content({ searchedWord, setSearchedWord }) {
   const { searchWordData, isLoading, isError, error } = useSearchWordFetchedData(searchedWord);
+
+  console.log(searchWordData);
 
   if (searchedWord === "") {
     return (
@@ -38,7 +40,7 @@ export default function Content({ searchedWord }) {
               <h2 className={classes.content__partOfSpeech}>{meaning.partOfSpeech}</h2>
               <div className={classes.content__divider}></div>
             </div>
-            <h3 className={classes.content__meaning_header}>Meaning</h3>
+            <h3 className={classes.content__article_subheader}>Meaning</h3>
             <ul className={classes.content__definitions_list}>
               {meaning.definitions.map((definition, index) => (
                 <li key={index} className={classes.content__definition_list_item}>
@@ -46,6 +48,30 @@ export default function Content({ searchedWord }) {
                 </li>
               ))}
             </ul>
+            {meaning.synonyms.length > 0 && (
+              <div className={classes.content__related_words_container}>
+                <h3 className={classes.content__article_subheader}>Synonyms</h3>
+                <ul className={classes.content__related_words_list}>
+                  {meaning.synonyms.map((synonym, index) => (
+                    <li key={index} className={classes.content__definition_list_item}>
+                      {synonym}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {meaning.antonyms.length > 0 && (
+              <div className={classes.content__related_words_container}>
+                <h3 className={classes.content__article_subheader}>Antonyms</h3>
+                <ul className={classes.content__related_words_list}>
+                  {meaning.antonyms.map((antonym, index) => (
+                    <li key={index} className={classes.content__definition_list_item}>
+                      {antonym}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
         <div className={classes.content__divider}></div>

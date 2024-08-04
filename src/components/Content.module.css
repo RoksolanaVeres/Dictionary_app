@@ -59,17 +59,33 @@
   background-color: var(--gray-light);
 }
 
-.content__meaning_header {
+.content__article_subheader {
   color: var(--gray-dark);
   font-weight: normal;
 }
 
 .content__definitions_list {
-    padding: 20px 0;
-    display: grid;
-    gap:10px;
+  padding: 20px 0;
+  display: grid;
+  gap: 10px;
 }
 
 .content__definition_list_item::marker {
-    color: var(--purple-dark)
+  color: var(--purple-dark);
+}
+
+.content__related_words_container {
+  padding: 30px 0;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.content__related_words_list {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  color: var(--purple-dark);
+  flex-wrap: wrap;
+  font-weight: bold;
 }

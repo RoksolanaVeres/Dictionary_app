@@ -12,8 +12,8 @@ export default function App() {
   return (
     <div className={classes.mainContainer}>
       <Header />
-      <Searchbar setSearchedWord={setSearchedWord} />
-      <Content searchedWord={searchedWord} />
+      <Searchbar searchedWord={searchedWord} setSearchedWord={setSearchedWord} />
+      <Content searchedWord={searchedWord} setSearchedWord={setSearchedWord} />
     </div>
   );
 }
