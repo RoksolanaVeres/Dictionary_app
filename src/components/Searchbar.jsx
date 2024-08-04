@@ -32,7 +32,9 @@ export default function Searchbar({ setSearchedWord, inputText, setInputText }) 
           placeholder="Search ..."
           value={inputText}
         />
-        <FaMagnifyingGlass className={classes.magnifyingGlass_icon} />
+        <button className={classes.search_btn}>
+          <FaMagnifyingGlass className={classes.magnifyingGlass_icon} />
+        </button>
       </form>
     </>
   );

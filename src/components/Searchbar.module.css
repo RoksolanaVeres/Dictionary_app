@@ -17,10 +17,24 @@
   outline: 2px solid var(--purple-medium);
 }
 
-.magnifyingGlass_icon {
+.search_btn {
   position: absolute;
   transform: translate(0, -50%);
   top: 50%;
-  right: 20px;
-  color: var(--purple-dark)
+  right: 0px;
+  height: 100%;
+  width: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+  color: var(--purple-dark);
+}
+
+.search_btn:hover {
+  color: var(--purple-medium);
+}
+
+.magnifyingGlass_icon {
+  width: 18px;
+  height: 18px;
 }
