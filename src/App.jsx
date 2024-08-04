@@ -7,13 +7,22 @@ import Content from "./components/Content";
 import { useState } from "react";
 
 export default function App() {
-  const [searchedWord, setSearchedWord] = useState("");
+  const [inputText, setInputText] = useState("");
+  const [searchedWord, setSearchedWord] = useState(inputText);
 
   return (
     <div className={classes.mainContainer}>
       <Header />
-      <Searchbar searchedWord={searchedWord} setSearchedWord={setSearchedWord} />
-      <Content searchedWord={searchedWord} setSearchedWord={setSearchedWord} />
+      <Searchbar
+        setSearchedWord={setSearchedWord}
+        inputText={inputText}
+        setInputText={setInputText}
+      />
+      <Content
+        searchedWord={searchedWord}
+        setSearchedWord={setSearchedWord}
+        setInputText={setInputText}
+      />
     </div>
   );
 }

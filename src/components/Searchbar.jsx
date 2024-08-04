@@ -2,9 +2,9 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import classes from "./Searchbar.module.css";
 
-export default function Searchbar({ setSearchedWord }) {
+export default function Searchbar({ setSearchedWord, inputText, setInputText }) {
   function handleInputChange(e) {
-    console.log(e.target.value);
+    setInputText(e.target.value);
     if (e.target.value === "") {
       clearContent();
     }
@@ -30,6 +30,7 @@ export default function Searchbar({ setSearchedWord }) {
           className={classes.searchbar}
           onChange={handleInputChange}
           placeholder="Search ..."
+          value={inputText}
         />
         <FaMagnifyingGlass className={classes.magnifyingGlass_icon} />
       </form>

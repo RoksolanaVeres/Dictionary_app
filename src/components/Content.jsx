@@ -2,8 +2,13 @@ import useSearchWordFetchedData from "../hooks/useSearchWordFetchedData";
 import classes from "./Content.module.css";
 import { FaPlay } from "react-icons/fa6";
 
-export default function Content({ searchedWord, setSearchedWord }) {
+export default function Content({ searchedWord, setInputText, setSearchedWord }) {
   const { searchWordData, isLoading, isError, error } = useSearchWordFetchedData(searchedWord);
+
+  function handleWordClick(clickedWord) {
+    setInputText(clickedWord);
+    setSearchedWord(clickedWord);
+  }
 
   console.log(searchWordData);
 
@@ -54,7 +59,12 @@ export default function Content({ searchedWord, setSearchedWord }) {
                 <ul className={classes.content__related_words_list}>
                   {meaning.synonyms.map((synonym, index) => (
                     <li key={index} className={classes.content__definition_list_item}>
-                      {synonym}
+                      <button
+                        className={classes.content__word_btn}
+                        onClick={() => handleWordClick(synonym)}
+                      >
+                        {synonym}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -66,7 +76,12 @@ export default function Content({ searchedWord, setSearchedWord }) {
                 <ul className={classes.content__related_words_list}>
                   {meaning.antonyms.map((antonym, index) => (
                     <li key={index} className={classes.content__definition_list_item}>
-                      {antonym}
+                      <button
+                        className={classes.content__word_btn}
+                        onClick={() => handleWordClick(antonym)}
+                      >
+                        {antonym}
+                      </button>
                     </li>
                   ))}
                 </ul>
