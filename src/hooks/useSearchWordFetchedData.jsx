@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-export default function useSearchWord(searchedWord) {
+export default function useSearchWordFetchedData(searchedWord) {
   let url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + searchedWord;
 
   async function fetchWord() {
