@@ -1,11 +1,33 @@
-import { useContext } from "react";
-import { SearchWordContext } from "../store/SearchWordContext";
+import { useQuery } from "@tanstack/react-query";
 
-export default function useSearchWord() {
-  const searchWordContext = useContext(SearchWordContext);
-  if (!searchWordContext) {
-    throw new Error("useOrder must be used within an SearchWordContextProvider!");
+export default function useSearchWord(searchedWord) {
+  let url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + searchedWord;
+
+  async function fetchWord() {
+    const response = await fetch(url);
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("Sorry, we can't find this word!");
+    }
+    return data;
   }
 
-  return searchWordContext;
+  const {
+    data: searchWordData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["words", [searchedWord]],
+    queryFn: fetchWord,
+    enabled: searchedWord !== "",
+    retry: false,
+  });
+
+  return {
+    searchWordData,
+    isLoading,
+    isError,
+    error,
+  };
 }

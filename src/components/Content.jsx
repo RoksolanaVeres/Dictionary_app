@@ -2,9 +2,8 @@ import useSearchWord from "../hooks/useSearchWord";
 import classes from "./Content.module.css";
 import { FaPlay } from "react-icons/fa6";
 
-export default function Content() {
-  const { searchWordData, isLoading, isError, error, searchedWord } = useSearchWord();
-  console.log(searchWordData);
+export default function Content({ searchedWord }) {
+  const { searchWordData, isLoading, isError, error } = useSearchWord(searchedWord);
 
   if (searchedWord === "") {
     return (
