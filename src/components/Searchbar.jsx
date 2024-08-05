@@ -1,8 +1,11 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useSearchParams } from "react-router-dom";
 
 import classes from "./Searchbar.module.css";
 
 export default function Searchbar({ setSearchedWord, inputText, setInputText }) {
+  let [searchParams, setSearchParams] = useSearchParams();
+
   function handleInputChange(e) {
     setInputText(e.target.value);
     if (e.target.value === "") {
@@ -15,10 +18,12 @@ export default function Searchbar({ setSearchedWord, inputText, setInputText }) 
     const submittedData = new FormData(e.target);
     const searchedWord = submittedData.get("searchWord");
     setSearchedWord(searchedWord);
+    setSearchParams({ word: searchedWord });
   }
 
   function clearContent() {
     setSearchedWord("");
+    setSearchParams({});
   }
 
   return (

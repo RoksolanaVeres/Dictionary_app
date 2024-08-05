@@ -4,11 +4,20 @@ import Header from "./components/Header";
 import Searchbar from "./components/Searchbar";
 import Content from "./components/Content";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 export default function App() {
   const [inputText, setInputText] = useState("");
-  const [searchedWord, setSearchedWord] = useState(inputText);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const wordParams = searchParams.get("word");
+  const [searchedWord, setSearchedWord] = useState(wordParams || "");
+  const location = useLocation();
+
+  useEffect(() => {
+    setSearchedWord(wordParams || "");
+    setInputText(wordParams || "");
+  }, [location, wordParams]);
 
   return (
     <div className={classes.mainContainer}>

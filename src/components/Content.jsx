@@ -2,11 +2,13 @@ import useSearchWordFetchedData from "../hooks/useSearchWordFetchedData";
 import classes from "./Content.module.css";
 import { FaPlay, FaPause } from "react-icons/fa6";
 import { useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export default function Content({ searchedWord, setInputText, setSearchedWord }) {
   const { searchWordData, isLoading, isError, error } = useSearchWordFetchedData(searchedWord);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   console.log(searchWordData);
 
@@ -24,6 +26,7 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
   function handleWordClick(clickedWord) {
     setInputText(clickedWord);
     setSearchedWord(clickedWord);
+    setSearchParams({ word: clickedWord });
   }
 
   function handleAudioClick() {
