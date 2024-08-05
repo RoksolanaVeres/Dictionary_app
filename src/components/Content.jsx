@@ -1,12 +1,12 @@
 import useSearchWordFetchedData from "../hooks/useSearchWordFetchedData";
 import classes from "./Content.module.css";
 import { FaPlay, FaPause } from "react-icons/fa6";
-import useSound from "use-sound";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Content({ searchedWord, setInputText, setSearchedWord }) {
   const { searchWordData, isLoading, isError, error } = useSearchWordFetchedData(searchedWord);
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   console.log(searchWordData);
 
@@ -21,12 +21,6 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
     }
   }
 
-  const [play, { stop }] = useSound(audioUrl, {
-    onend: () => {
-      setIsPlaying(false);
-    },
-  });
-
   function handleWordClick(clickedWord) {
     setInputText(clickedWord);
     setSearchedWord(clickedWord);
@@ -34,12 +28,16 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
 
   function handleAudioClick() {
     if (isPlaying) {
-      stop();
+      audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      play();
+      audioRef.current.play();
       setIsPlaying(true);
     }
+  }
+
+  function handleAudioEnd() {
+    setIsPlaying(false);
   }
 
   if (searchedWord === "") {
@@ -65,13 +63,16 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
             <p className={classes.content__header_transcription}>{searchWordData[0].phonetic}</p>
           </div>
           {audioUrl !== "" && (
-            <button className={classes.content__header_play_btn} onClick={handleAudioClick}>
-              {isPlaying ? (
-                <FaPause className={classes.content__play_icon} />
-              ) : (
-                <FaPlay className={classes.content__play_icon} />
-              )}
-            </button>
+            <div className="">
+              <audio ref={audioRef} onEnded={handleAudioEnd} src={audioUrl}></audio>
+              <button className={classes.content__header_play_btn} onClick={handleAudioClick}>
+                {isPlaying ? (
+                  <FaPause className={classes.content__play_icon} />
+                ) : (
+                  <FaPlay className={classes.content__play_icon} />
+                )}
+              </button>
+            </div>
           )}
         </div>
         {searchWordData[0].meanings.map((meaning, index) => (

@@ -18,7 +18,7 @@ export default function useSearchWordFetchedData(searchedWord) {
     isError,
     error,
   } = useQuery({
-    queryKey: ["words", [searchedWord]],
+    queryKey: [searchedWord],
     queryFn: fetchWord,
     enabled: searchedWord !== "",
     retry: false,
