@@ -13,6 +13,7 @@ export default function App() {
   const wordParams = searchParams.get("word");
   const [searchedWord, setSearchedWord] = useState(wordParams || "");
   const location = useLocation();
+  const [selectedFont, setSelectedFont] = useState("serif");
 
   useEffect(() => {
     setSearchedWord(wordParams || "");
@@ -20,8 +21,8 @@ export default function App() {
   }, [location, wordParams]);
 
   return (
-    <div className={classes.mainContainer}>
-      <Header />
+    <div className={classes.mainContainer} style={{ fontFamily: selectedFont }}>
+      <Header selectedFont={selectedFont} setSelectedFont={setSelectedFont} />
       <Searchbar
         setSearchedWord={setSearchedWord}
         inputText={inputText}

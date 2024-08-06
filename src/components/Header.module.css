@@ -16,6 +16,23 @@
   gap: 20px;
 }
 
+.header__fonts_select {
+  border: none;
+  font-size: 1rem;
+}
+
+.header__fonts_serif {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.header__fonts_sansSerif {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.header__fonts_monospace {
+  font-family: "Courier New", Courier, monospace;
+}
+
 .header__divider {
   height: 20px;
   width: 1px;
