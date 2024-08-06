@@ -8,7 +8,7 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
   const { searchWordData, isLoading, isError, error } = useSearchWordFetchedData(searchedWord);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   console.log(searchWordData);
 
@@ -129,6 +129,18 @@ export default function Content({ searchedWord, setInputText, setSearchedWord })
           </div>
         ))}
         <div className={classes.content__divider}></div>
+        <div className={classes.content__source_container}>
+          <h4 className={classes.content__source_header}>Source</h4>
+          <ul className={classes.content__source_list}>
+            {searchWordData[0].sourceUrls.map((source, index) => (
+              <li key={index}>
+                <a href={source} className={classes.content__source_link}>
+                  {source}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

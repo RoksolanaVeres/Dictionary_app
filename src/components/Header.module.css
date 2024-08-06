@@ -1,3 +1,23 @@
 .header__container {
-  color: red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__book_icon {
+  width: 40px;
+  height: 40px;
+  color: var(--purple-dark);
+}
+
+.header__fonts_theme_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__divider {
+  height: 20px;
+  width: 1px;
+  background-color: var(--gray-light);
 }

@@ -9,7 +9,7 @@ import { useSearchParams, useLocation } from "react-router-dom";
 
 export default function App() {
   const [inputText, setInputText] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const wordParams = searchParams.get("word");
   const [searchedWord, setSearchedWord] = useState(wordParams || "");
   const location = useLocation();

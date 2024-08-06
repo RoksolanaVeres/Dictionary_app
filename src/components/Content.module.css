@@ -96,10 +96,34 @@
   font-size: 1rem;
   padding: 3px;
   border-radius: 5px;
-  transition: all 0.2s ease-in-out
-
+  transition: all 0.2s ease-in-out;
 }
 
 .content__word_btn:hover {
   background-color: var(--purple-light);
+}
+
+.content__source_container {
+  display: flex;
+  gap: 30px;
+  font-size: 1rem;
+  padding-top: 20px;
+}
+
+.content__source_header {
+  color: var(--gray-dark);
+  font-weight: normal;
+}
+
+.content__source_list {
+  list-style-type: none;
+}
+
+.content__source_link {
+  color: var(--purple-medium);
+  transition: all 0.2s ease-in-out;
+}
+
+.content__source_link:hover {
+  color: var(--purple-dark);
 }
