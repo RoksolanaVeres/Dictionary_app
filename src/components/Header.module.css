@@ -16,9 +16,57 @@
   gap: 20px;
 }
 
-.header__fonts_select {
-  border: none;
-  font-size: 1rem;
+.header__fonts_container {
+  position: relative;
+  width: 150px;
+}
+
+.header__fonts_display {
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.header__fonts_display:hover {
+ background-color: var(--purple-light);
+}
+
+.header__arrow_icon {
+  color: var(--purple-dark);
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.header__arrow_icon_active {
+  transform: rotate(-180deg);
+}
+
+.header__fonts_options_list {
+  list-style-type: none;
+  background-color: white;
+  box-shadow: 5px 10px 18px var(--gray-dark);
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 20;
+  top: 50px;
+}
+
+.header__fonts_option {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+.header__fonts_option:hover {
+  background-color: var(--purple-light);
 }
 
 .header__fonts_serif {

@@ -1,18 +1,35 @@
 import classes from "./Header.module.css";
 import { VscBook } from "react-icons/vsc";
 import { Link } from "react-router-dom";
+import { RiArrowDownSFill } from "react-icons/ri";
+import { useState } from "react";
 
 export default function Header({ selectedFont, setSelectedFont }) {
-  function handleFontChange(e) {
-    setSelectedFont(() => {
-      if (e.target.value === "serif") {
-        return '"Times New Roman", Times, serif';
-      } else if (e.target.value === "sansSerif") {
-        return '"Trebuchet MS", Arial, sans-serif';
-      } else if (e.target.value === "monospace") {
-        return '"Courier New", Courier, monospace';
-      }
+  const [fontsMenuOpen, setFontsMenuOpen] = useState(false);
+
+  function handleFontsMenuClick() {
+    setFontsMenuOpen((menuOpen) => {
+      return !menuOpen;
     });
+  }
+
+  function closeFontsMenu() {
+    setFontsMenuOpen(false);
+  }
+
+  function setSerifFont() {
+    setSelectedFont("Serif");
+    closeFontsMenu();
+  }
+
+  function setSansSerifFont() {
+    setSelectedFont("Sans-serif");
+    closeFontsMenu();
+  }
+
+  function setMonoFont() {
+    setSelectedFont("Mono");
+    closeFontsMenu();
   }
 
   return (
@@ -22,18 +39,37 @@ export default function Header({ selectedFont, setSelectedFont }) {
       </Link>
 
       <div className={classes.header__fonts_theme_container}>
-        <div className="">
-          <select name="fonts" onChange={handleFontChange} className={classes.header__fonts_select}>
-            <option value="serif" className={classes.header__fonts_serif}>
-              Serif
-            </option>
-            <option value="sansSerif" className={classes.header__fonts_sansSerif}>
-              Sans Serif
-            </option>
-            <option value="monospace" className={classes.header__fonts_monospace}>
-              Monospace
-            </option>
-          </select>
+        <div className={classes.header__fonts_container}>
+          <div className={classes.header__fonts_display} onClick={handleFontsMenuClick}>
+            <p> {selectedFont} </p>
+            <RiArrowDownSFill
+              className={`${classes.header__arrow_icon} ${
+                fontsMenuOpen && classes.header__arrow_icon_active
+              }`}
+            />
+          </div>
+          {fontsMenuOpen && (
+            <ul className={classes.header__fonts_options_list}>
+              <li
+                className={`${classes.header__fonts_option} ${classes.header__fonts_serif}`}
+                onClick={setSerifFont}
+              >
+                Serif
+              </li>
+              <li
+                className={`${classes.header__fonts_option} ${classes.header__fonts_sansSerif}`}
+                onClick={setSansSerifFont}
+              >
+                Sans-serif
+              </li>
+              <li
+                className={`${classes.header__fonts_option} ${classes.header__fonts_monospace}`}
+                onClick={setMonoFont}
+              >
+                Mono
+              </li>
+            </ul>
+          )}
         </div>
         <div className={classes.header__divider}></div>
         <div className={classes.header__theme_switcher}>THEME</div>

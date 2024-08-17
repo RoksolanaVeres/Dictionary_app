@@ -13,15 +13,24 @@ export default function App() {
   const wordParams = searchParams.get("word");
   const [searchedWord, setSearchedWord] = useState(wordParams || "");
   const location = useLocation();
-  const [selectedFont, setSelectedFont] = useState("serif");
+  const [selectedFont, setSelectedFont] = useState("Serif");
 
   useEffect(() => {
     setSearchedWord(wordParams || "");
     setInputText(wordParams || "");
   }, [location, wordParams]);
 
+  let font;
+  if (selectedFont === "Serif") {
+    font = '"Times New Roman", Times, serif';
+  } else if (selectedFont === "Sans-serif") {
+    font = '"Trebuchet MS", Arial, sans-serif';
+  } else if (selectedFont === "Mono") {
+    font = '"Courier New", Courier, monospace';
+  }
+
   return (
-    <div className={classes.mainContainer} style={{ fontFamily: selectedFont }}>
+    <div className={classes.mainContainer} style={{ fontFamily: font }}>
       <Header selectedFont={selectedFont} setSelectedFont={setSelectedFont} />
       <Searchbar
         setSearchedWord={setSearchedWord}

@@ -17,6 +17,9 @@ export default function Searchbar({ setSearchedWord, inputText, setInputText }) 
     e.preventDefault();
     const submittedData = new FormData(e.target);
     const searchedWord = submittedData.get("searchWord");
+    if (searchedWord.trim() === "") {
+      return;
+    }
     setSearchedWord(searchedWord);
     setSearchParams({ word: searchedWord });
   }
