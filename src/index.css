@@ -12,8 +12,22 @@
   --purple-light: #e9d0fa;
   --purple-medium: #c279f7;
   --purple-dark: #aa43f2;
+  --background: #fff;
+  --foreground: #1d1d1d;
+  --highlight: #e9d0fa;
+}
+
+[data-theme="dark"] {
+  --background: #0f0f0f;
+  --foreground: #fff;
+  --highlight: #aa43f2;
 }
 
 button {
   cursor: pointer;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }

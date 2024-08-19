@@ -12,8 +12,8 @@ export default function App() {
   const [searchParams] = useSearchParams();
   const wordParams = searchParams.get("word");
   const [searchedWord, setSearchedWord] = useState(wordParams || "");
-  const location = useLocation();
   const [selectedFont, setSelectedFont] = useState("Serif");
+  const location = useLocation();
 
   useEffect(() => {
     setSearchedWord(wordParams || "");
